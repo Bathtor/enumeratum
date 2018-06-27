@@ -1,8 +1,6 @@
 package enumeratum.values
 
-import upickle.default.Aliases.RW
-import upickle.default.ReadWriter
-import UPickler._
+import upickle.default.{ReadWriter => RW, _}
 
 /**
   * Created by Lloyd on 4/14/16.
@@ -24,8 +22,10 @@ sealed trait UPickleValueEnum[ValueType, EntryType <: ValueEnumEntry[ValueType]]
   */
 trait IntUPickleEnum[EntryType <: IntEnumEntry] extends UPickleValueEnum[Int, EntryType] {
   this: ValueEnum[Int, EntryType] =>
-  implicit val uPickleReadWriter: RW[EntryType] =
-    ReadWriter(writer(this).write, reader(this).read)
+  implicit val uPickleReadWriter: RW[EntryType] = readwriter[Int].bimap[EntryType](
+    x => x.value,
+    v => this.withValue(v)
+  );
 }
 
 /**
@@ -33,8 +33,10 @@ trait IntUPickleEnum[EntryType <: IntEnumEntry] extends UPickleValueEnum[Int, En
   */
 trait LongUPickleEnum[EntryType <: LongEnumEntry] extends UPickleValueEnum[Long, EntryType] {
   this: ValueEnum[Long, EntryType] =>
-  implicit val uPickleReadWriter: RW[EntryType] =
-    ReadWriter(writer(this).write, reader(this).read)
+  implicit val uPickleReadWriter: RW[EntryType] = readwriter[Long].bimap[EntryType](
+    x => x.value,
+    v => this.withValue(v)
+  );
 }
 
 /**
@@ -42,8 +44,10 @@ trait LongUPickleEnum[EntryType <: LongEnumEntry] extends UPickleValueEnum[Long,
   */
 trait ShortUPickleEnum[EntryType <: ShortEnumEntry] extends UPickleValueEnum[Short, EntryType] {
   this: ValueEnum[Short, EntryType] =>
-  implicit val uPickleReadWriter: RW[EntryType] =
-    ReadWriter(writer(this).write, reader(this).read)
+  implicit val uPickleReadWriter: RW[EntryType] = readwriter[Short].bimap[EntryType](
+    x => x.value,
+    v => this.withValue(v)
+  );
 }
 
 /**
@@ -51,8 +55,10 @@ trait ShortUPickleEnum[EntryType <: ShortEnumEntry] extends UPickleValueEnum[Sho
   */
 trait StringUPickleEnum[EntryType <: StringEnumEntry] extends UPickleValueEnum[String, EntryType] {
   this: ValueEnum[String, EntryType] =>
-  implicit val uPickleReadWriter: RW[EntryType] =
-    ReadWriter(writer(this).write, reader(this).read)
+  implicit val uPickleReadWriter: RW[EntryType] = readwriter[String].bimap[EntryType](
+    x => x.value,
+    v => this.withValue(v)
+  );
 }
 
 /**
@@ -60,8 +66,10 @@ trait StringUPickleEnum[EntryType <: StringEnumEntry] extends UPickleValueEnum[S
   */
 trait ByteUPickleEnum[EntryType <: ByteEnumEntry] extends UPickleValueEnum[Byte, EntryType] {
   this: ValueEnum[Byte, EntryType] =>
-  implicit val uPickleReadWriter: RW[EntryType] =
-    ReadWriter(writer(this).write, reader(this).read)
+  implicit val uPickleReadWriter: RW[EntryType] = readwriter[Byte].bimap[EntryType](
+    x => x.value,
+    v => this.withValue(v)
+  );
 }
 
 /**
@@ -69,6 +77,8 @@ trait ByteUPickleEnum[EntryType <: ByteEnumEntry] extends UPickleValueEnum[Byte,
   */
 trait CharUPickleEnum[EntryType <: CharEnumEntry] extends UPickleValueEnum[Char, EntryType] {
   this: ValueEnum[Char, EntryType] =>
-  implicit val uPickleReadWriter: RW[EntryType] =
-    ReadWriter(writer(this).write, reader(this).read)
+  implicit val uPickleReadWriter: RW[EntryType] = readwriter[Char].bimap[EntryType](
+    x => x.value,
+    v => this.withValue(v)
+  );
 }

@@ -10,7 +10,7 @@ lazy val scalacheckVersion = "1.13.5"
 // Library versions
 lazy val reactiveMongoVersion = "0.13.0"
 lazy val circeVersion         = "0.9.3"
-lazy val uPickleVersion       = "0.4.4"
+lazy val uPickleVersion       = "0.6.4"
 lazy val argonautVersion      = "6.2.1"
 lazy val json4sVersion        = "3.5.3"
 lazy val quillVersion         = "2.3.3"
@@ -206,7 +206,7 @@ lazy val enumeratumUPickle = crossProject
   .settings(testSettings: _*)
   .settings(
     name := "enumeratum-upickle",
-    version := "1.5.13-SNAPSHOT",
+    version := "1.5.14-SNAPSHOT",
     libraryDependencies ++= {
       import org.scalajs.sbtplugin._
       val cross = {

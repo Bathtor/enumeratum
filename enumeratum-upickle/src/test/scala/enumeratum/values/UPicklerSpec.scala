@@ -53,7 +53,7 @@ class UPicklerSpec extends FunSpec with Matchers {
         it("should write enum values to JS") {
           val valueTypeWriter = implicitly[Writer[ValueType]]
           enum.values.foreach { entry =>
-            writeJs(entry) shouldBe valueTypeWriter.write(entry.value)
+            writeJs(entry) shouldBe writeJs(entry.value)
           }
         }
 
